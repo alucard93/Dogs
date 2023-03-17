@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
+
 import { useForm } from 'react-hook-form'
 
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -11,7 +12,7 @@ import { Input } from '../../../components/Input/Input'
 import { Button } from '../../../components/Button/Button'
 
 export const LoginForm = () => {
-  const { token, setToken, sessionUser } = useContext(LoginContext)
+  const { token, setToken, sessionUser, loading } = useContext(LoginContext)
 
   const {
     register,
@@ -31,8 +32,8 @@ export const LoginForm = () => {
   }
 
   return (
-    <LoginFormContainer>
-      <h1>Login</h1>
+    <LoginFormContainer className="animeLeft">
+      <h1 className="title">Login</h1>
       <form onSubmit={handleSubmit((data) => handleSubmitLogin(data))}>
         <Input
           label="Usuário"
@@ -50,10 +51,24 @@ export const LoginForm = () => {
           register={register}
           errosMessage={errors.password?.message?.toString()}
         />
-
-        <Button>Entrar</Button>
+        {loading ? (
+          <Button disabled>Carregando</Button>
+        ) : (
+          <Button>Entrar</Button>
+        )}
       </form>
-      <Link to="/login/criar">Cadastro</Link>
+
+      <Link className="perdeu" to="/login/perdeu">
+        Perdeu a Senha?
+      </Link>
+
+      <div className="cadastro">
+        <h2 className="subtitle">Cadastre-se</h2>
+        <p>Ainda não poussi conta? Cadastre-se no site.</p>
+        <Link className="buttonCreate" to="/login/criar">
+          Cadastro
+        </Link>
+      </div>
     </LoginFormContainer>
   )
 }

@@ -11,6 +11,7 @@ export const Router = () => {
       <Route path="/" element={<DefaultLayots />}>
         <Route path="/" element={<Home />} />
         <Route path="/login/*" element={<Login />} />
+        <Route path="/conta" element={<Login />} />
       </Route>
     </Routes>
   )

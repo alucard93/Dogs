@@ -9,7 +9,7 @@ import { HeaderContainer } from './style'
 import { LoginContext } from '../../contenxt/LoginProvider/LoginProvider'
 
 export const Header = () => {
-  const { data } = useContext(LoginContext)
+  const { data, userLogout } = useContext(LoginContext)
   return (
     <HeaderContainer>
       <Container className="nav">
@@ -20,12 +20,15 @@ export const Header = () => {
         {data ? (
           <Link className="login" to="/conta">
             {data.username}
+            <button onClick={ userLogout }>Sair</button>
           </Link>
+          
         ) : (
           <Link className="login" to="/login">
             Login / Criar
           </Link>
         )}
+        
       </Container>
     </HeaderContainer>
   )

@@ -1,4 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react'
+
+import { useNavigate } from 'react-router-dom'
+
 import {
   requestSessionUser,
   requestValidationToken,
@@ -14,6 +17,8 @@ const LoginProvider = ({ children }) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
+  const navigate = useNavigate()
+
   async function autoLogin() {
     const token = localStorage.getItem('@DOGS')
 
@@ -21,14 +26,13 @@ const LoginProvider = ({ children }) => {
       try {
         setError(null)
         setLoading(true)
+        setLogin(true)
         const res = await requestValidationToken(token)
 
         GetUser(token)
-        
       } catch (error) {
-        console.log('Erro na validação do token:', error)
+        userLogout()
         setError(error)
-
       } finally {
         setLoading(false)
       }
@@ -43,7 +47,6 @@ const LoginProvider = ({ children }) => {
     try {
       const res = await requestGetUser(token)
       setData(res)
-      
     } catch (error) {
       console.log(error)
     }
@@ -51,20 +54,47 @@ const LoginProvider = ({ children }) => {
 
   async function sessionUser(data) {
     try {
+      setError(null)
+      setLoading(true)
       const res = await requestSessionUser(data)
       localStorage.setItem('@DOGS', res.token)
       setToken(res.token)
       setLogin(true)
 
       GetUser(res.token)
+      navigate('/conta')
+      
     } catch (error) {
+      setLogin(false)
       console.log(error)
-      throw new Error('puts')
+    } finally {
+      setLoading(false)
     }
   }
 
+  async function userLogout() {
+    setData(null)
+    setError(null)
+    setLoading(false)
+    setLogin(false)
+
+    localStorage.removeItem('@DOGS')
+    navigate('/login')
+  }
+
   return (
-    <LoginContext.Provider value={{ token, setToken, sessionUser, data }}>
+    <LoginContext.Provider
+      value={{
+        token,
+        data,
+        error,
+        loading,
+        login,
+        setToken,
+        sessionUser,
+        userLogout,
+      }}
+    >
       {children}
     </LoginContext.Provider>
   )
