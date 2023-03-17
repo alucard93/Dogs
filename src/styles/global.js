@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -7,6 +7,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     margin: 0;
+    padding-top: 4rem;
     color: #333;
     --type-first: Helvetica, Arial, sans-serif;
     --type-second: 'Spectral', Georgia;
@@ -28,16 +29,21 @@ export const GlobalStyle = createGlobalStyle`
     max-width: 100%;
   }
 
-  button {
+  button, input {
     display: block;
     font-size: 1rem;
     font-family: var(--type-first);
     color: #333;
   }
 
-  .container {
-    max-width: 50rem;
-    padding: 0 1rem;
-    margin: 0 auto;
+  a {
+    text-decoration: none;
   }
+  
+  
+`
+export const Container = styled.div`
+  max-width: 50rem;
+  padding: 0 1rem;
+  margin: 0 auto;
 `
