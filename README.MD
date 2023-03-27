@@ -1,14 +1,3 @@
-<div align='center'>
-<img src='./logo_readme.png'>
-
-<div>
-    <img src="https://img.shields.io/github/repo-size/rafaasimi/Dogs-Origamid">
-    <img src="https://img.shields.io/github/last-commit/rafaasimi/Dogs-Origamid">
-    <img src="https://img.shields.io/github/languages/count/rafaasimi/Dogs-Origamid">
-    <img src="https://img.shields.io/github/languages/top/rafaasimi/Dogs-Origamid">
-</div>
-
-</div>
 
 </br>
 
@@ -22,7 +11,7 @@
 <ul>
     <li><a href="https://create-react-app.dev/" target="_blank">React</a></li>
     <li><a href="https://reactrouter.com/" target="_blank">React Router</a></li>
-    <li><a href="https://github.com/FormidableLabs/victory" target="_blank">Victory</a></li>
+   
 </ul>
 
 <br>
@@ -40,4 +29,4 @@
 
 
 <br>
-Criado com 💙 por <a href="https://github.com/rafaasimi/" target="_blank">Marcus Vinicius</a></p>
+Criado com 💙 por <a href="https://github.com/alucard93/" target="_blank">Marcus Vinicius</a></p>

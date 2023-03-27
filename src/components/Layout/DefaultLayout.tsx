@@ -4,7 +4,7 @@ import { Header } from '../Header/Header'
 import { Footer } from '../Footer/Footer'
 
 
-export const DefaultLayots = () => {
+export const DefaultLayout  = () => {
   return (
     <div>
       <Header />

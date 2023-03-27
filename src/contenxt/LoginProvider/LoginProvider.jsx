@@ -36,7 +36,7 @@ const LoginProvider = ({ children }) => {
       } finally {
         setLoading(false)
       }
-    }
+    } 
   }
 
   useEffect(() => {
@@ -78,8 +78,8 @@ const LoginProvider = ({ children }) => {
     setLoading(false)
     setLogin(false)
 
-    localStorage.removeItem('@DOGS')
     navigate('/login')
+    localStorage.removeItem('@DOGS')
   }
 
   return (
