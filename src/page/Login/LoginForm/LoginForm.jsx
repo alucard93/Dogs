@@ -66,7 +66,7 @@ export const LoginForm = () => {
         <h2 className="subtitle">Cadastre-se</h2>
         <p>Ainda não poussi conta? Cadastre-se no site.</p>
         <Link className="buttonCreate" to="/login/criar">
-          Cadastro
+          <Button>Cadastro</Button>
         </Link>
       </div>
     </LoginFormContainer>
