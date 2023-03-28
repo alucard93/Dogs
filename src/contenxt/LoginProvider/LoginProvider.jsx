@@ -28,7 +28,7 @@ const LoginProvider = ({ children }) => {
         setLoading(true)
         setLogin(true)
         const res = await requestValidationToken(token)
-
+        navigate('/conta')
         GetUser(token)
       } catch (error) {
         userLogout()
