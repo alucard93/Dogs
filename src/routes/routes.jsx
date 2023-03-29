@@ -17,7 +17,6 @@ export const Router = () => {
         <Route element={<ProtectedRoutes />}>
           <Route path="/conta/*" element={<User />} />
         </Route>
-
       </Route>
     </Routes>
   )

@@ -12,7 +12,7 @@ export const User = () => {
       <UserHeader />
       <Routes>
         <Route path="/feed" element={<Feed />}></Route>
-        <Route path="/posta" element={<UserPhotoPost />}></Route>
+        <Route path="/postar" element={<UserPhotoPost />}></Route>
         <Route path="/estatisticas" element={<UserStats />}></Route>
       </Routes>
     </Container>
