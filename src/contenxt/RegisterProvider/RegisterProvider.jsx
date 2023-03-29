@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react'
 import { useNavigate } from 'react-router'
-import { requestPhoto, requestRegisterUser } from '../../service/api'
+import { requestPhotos, requestGetPhoto, requestRegisterUser } from '../../service/api'
 
 export const RegisterContext = createContext({})
 
@@ -26,7 +26,7 @@ export const RegisterProvider = ({ children }) => {
     const token = localStorage.getItem('@DOGS')
     
     try {
-      const res = await requestPhoto(data, token)
+      const res = await requestPhotos(data, token)
       navigate('/conta')
     } catch (error) {
       console.log(error)

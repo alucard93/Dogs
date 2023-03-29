@@ -38,8 +38,7 @@ export async function requestValidationToken(token) {
   return response.data
 }
 
-export async function requestPhoto(data, token) {
-
+export async function requestPhotos(data, token) {
   const formData = new FormData()
   formData.append('img', data.get('img'))
   formData.append('nome', data.get('nome'))
@@ -55,7 +54,13 @@ export async function requestPhoto(data, token) {
   return response.data
 }
 
-export async function requestGetPhoto() {
-  const response = await api.get('api/photo')
+export async function requestGetPhotos({ page, total, user }) {
+  const response = await api.get(
+    `api/photo/?_page=${page}&_total=${total}&_user=${user}`
+  )
+  return response.data
+}
+export async function requestGetPhoto({ id }) {
+  const response = await api.get(`api/photo/${id}`)
   return response.data
 }

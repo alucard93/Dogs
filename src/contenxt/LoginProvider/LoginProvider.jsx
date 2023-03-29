@@ -93,6 +93,7 @@ const LoginProvider = ({ children }) => {
         setToken,
         sessionUser,
         userLogout,
+        setLoading,
       }}
     >
       {children}
