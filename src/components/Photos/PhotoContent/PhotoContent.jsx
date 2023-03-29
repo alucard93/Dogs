@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { PhotoComments } from '../PhotoComments/PhotoComments'
+
 import { PhotoContentContainer } from './style'
 
 export const PhotoContent = ({ dataPhotos }) => {
