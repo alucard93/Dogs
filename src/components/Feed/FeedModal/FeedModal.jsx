@@ -6,7 +6,7 @@ import { PhotoContent } from '../../Photos/PhotoContent/PhotoContent'
 
 import { FeedModalContainer } from './style'
 
-export const FeedModal = ({ photo }) => {
+export const FeedModal = ({ photo, setModalPhoto }) => {
   const { loading } = useContext(LoginContext)
   const { getPhoto, dataPhotos } = useContext(PhotosContext)
   
@@ -14,8 +14,14 @@ export const FeedModal = ({ photo }) => {
     getPhoto(photo.id)
   }, [photo])
 
+  function handleOutsideClick(event) {
+    if(event.target == event.currentTarget) {
+      setModalPhoto(null)
+    }
+  }
+
   return (
-    <FeedModalContainer>
+    <FeedModalContainer onClick={handleOutsideClick}>
       {loading && <Loading />}
       {dataPhotos && <PhotoContent dataPhotos={dataPhotos} />}
     </FeedModalContainer>
