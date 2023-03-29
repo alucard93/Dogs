@@ -1,9 +1,12 @@
 import { createContext, useContext, useState } from 'react'
-import { requestRegisterUser } from '../../service/api'
+import { useNavigate } from 'react-router'
+import { requestPhoto, requestRegisterUser } from '../../service/api'
 
 export const RegisterContext = createContext({})
 
 export const RegisterProvider = ({ children }) => {
+
+  const navigate = useNavigate()
   
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
@@ -12,7 +15,19 @@ export const RegisterProvider = ({ children }) => {
   async function registerUser(data) {
     try {
       const res = await requestRegisterUser(data)
-      console.log(res)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async function registerPhoto(data) {
+
+    
+    const token = localStorage.getItem('@DOGS')
+    
+    try {
+      const res = await requestPhoto(data, token)
+      navigate('/conta')
     } catch (error) {
       console.log(error)
     }
@@ -28,6 +43,7 @@ export const RegisterProvider = ({ children }) => {
         setEmail,
         setPassword,
         registerUser,
+        registerPhoto,
       }}
     >
       {children}

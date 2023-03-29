@@ -1,22 +1,20 @@
-import axios from "axios";
+import axios from 'axios'
 
 const api = axios.create({
   baseURL: 'https://dogsapi.origamid.dev/json/',
-  timeout: 5000
+  timeout: 5000,
 })
 
 // const token = localStorage.getItem('@DOGS')
 
+export async function requestRegisterUser(data) {
+  const response = await api.post('api/user', data)
 
-export async function requestRegisterUser (data) {
-  const response = await api.post("api/user", data)
-  
   return response.data
-  
 }
 
 export async function requestGetUser(token) {
-  const response = await api.get("api/user", {
+  const response = await api.get('api/user', {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -25,41 +23,39 @@ export async function requestGetUser(token) {
 }
 
 export async function requestSessionUser(data) {
-  const response = await api.post("jwt-auth/v1/token", data)
-  
+  const response = await api.post('jwt-auth/v1/token', data)
+
   return response.data
 }
 
 export async function requestValidationToken(token) {
-  const response = await api.post("jwt-auth/v1/token/validate", null, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  return response.data;
-}
-
-
-export async function requestPhoto(data, token) {
-  const { nome, peso, idade, img } = data;
-  
-  const formData = new FormData();
-  formData.append('img', img);
-  formData.append('nome', nome);
-  formData.append('peso', peso);
-  formData.append('idade', idade);
-
-  const response = await api.post("api/photo", formData, {
+  const response = await api.post('jwt-auth/v1/token/validate', null, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   })
-  
-  return response.data;
+
+  return response.data
+}
+
+export async function requestPhoto(data, token) {
+
+  const formData = new FormData()
+  formData.append('img', data.get('img'))
+  formData.append('nome', data.get('nome'))
+  formData.append('peso', data.get('peso'))
+  formData.append('idade', data.get('idade'))
+
+  const response = await api.post('api/photo', formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+
+  return response.data
 }
 
 export async function requestGetPhoto() {
-  const response = await api.get("api/photo")
+  const response = await api.get('api/photo')
   return response.data
 }
