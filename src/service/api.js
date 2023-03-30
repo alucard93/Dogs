@@ -38,6 +38,16 @@ export async function requestValidationToken(token) {
   return response.data
 }
 
+export async function requestCommentPost(id, data) {
+  const token = localStorage.getItem('@DOGS')
+  const response = await api.post(`api/comment/${id}`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  return response.data
+}
+
 export async function requestPhotos(data, token) {
   const formData = new FormData()
   formData.append('img', data.get('img'))
@@ -62,9 +72,11 @@ export async function requestGetPhotos({ page, total, user }) {
 }
 
 export async function requestGetPhoto(id) {
-  
-  
   const response = await api.get(`api/photo/${id}`)
+  return response.data
+}
 
+export async function requestGetComments(id) {
+  const response = await api.get(`api/photo/${id}`)
   return response.data
 }

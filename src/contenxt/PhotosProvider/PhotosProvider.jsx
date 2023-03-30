@@ -1,6 +1,11 @@
 import React, { createContext, useContext } from 'react'
 import { useState } from 'react'
-import { requestGetPhoto, requestGetPhotos } from '../../service/api'
+import {
+  requestCommentPost,
+  requestGetComments,
+  requestGetPhoto,
+  requestGetPhotos,
+} from '../../service/api'
 import { LoginContext } from '../LoginProvider/LoginProvider'
 
 export const PhotosContext = createContext({})
@@ -25,9 +30,8 @@ export const PhotosProvider = ({ children }) => {
     try {
       setLoading(true)
       const res = await requestGetPhoto(id)
-  
+
       setDataPhotoModal(res.photo)
-      setDataCommentModal(res.comments)
     } catch (error) {
       console.log(error)
     } finally {
@@ -35,13 +39,38 @@ export const PhotosProvider = ({ children }) => {
     }
   }
 
+  async function getComment(id) {
+    try {
+      setLoading(true)
+      const res = await requestGetComments(id)
+      setDataCommentModal(res.comments)
+    
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  async function postComment(id, data) {
+    try {
+      const res = await requestCommentPost(id, data)
+      setDataCommentModal((prevComments) => [...prevComments, res])
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <PhotosContext.Provider
       value={{
         getPhoto,
+        getComment,
         getPhotos,
+        postComment,
         dataPhotos,
         dataPhotoModal,
+        dataCommentModal,
         setDataPhotoModal,
         setDataCommentModal,
       }}
