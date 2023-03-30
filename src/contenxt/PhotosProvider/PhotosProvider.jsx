@@ -43,8 +43,9 @@ export const PhotosProvider = ({ children }) => {
     try {
       setLoading(true)
       const res = await requestGetComments(id)
+
       setDataCommentModal(res.comments)
-    
+      return res.comments
     } catch (error) {
       console.log(error)
     } finally {
