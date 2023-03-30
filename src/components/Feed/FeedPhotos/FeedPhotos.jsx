@@ -13,6 +13,8 @@ export const FeedPhotos = ({ setModalPhoto }) => {
     getPhotos()
   }, [])
 
+  
+
   return (
     <>
       {loading ? (
