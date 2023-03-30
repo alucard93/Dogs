@@ -9,7 +9,7 @@ import { PhotosContext } from '../../../contenxt/PhotosProvider/PhotosProvider'
 
 export const PhotoContent = () => {
   const { dataPhotoModal, setDataCommentModal } = useContext(PhotosContext)
-  const { id, author, title, date, src, acessos, peso, idade } = dataPhotoModal
+  const { id, author, title, src, acessos, peso, idade } = dataPhotoModal
   const { comments } = setDataCommentModal
 
   return (
