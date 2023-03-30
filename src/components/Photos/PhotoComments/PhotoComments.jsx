@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { LoginContext } from '../../../contenxt/LoginProvider/LoginProvider'
 import { PhotosContext } from '../../../contenxt/PhotosProvider/PhotosProvider'
 import { PhotoCommentsForm } from '../PhotoCommentsForm/PhotoCommentsForm'
@@ -11,8 +11,9 @@ export const PhotoComments = ({ id }) => {
 
   useEffect(() => {
     async function Comment() {
-      await getComment(id)
+      const response = await getComment(id)
     }
+
     Comment()
   }, [id])
 

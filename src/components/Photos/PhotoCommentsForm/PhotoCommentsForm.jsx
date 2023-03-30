@@ -7,6 +7,8 @@ import Enviar from '../../../assets/enviar.svg'
 import { useContext } from 'react'
 import { PhotosContext } from '../../../contenxt/PhotosProvider/PhotosProvider'
 import { PhotoCommentsFormContainer } from './style'
+import SendDogSvg from '../../SendDogSvg/SendDogSvg'
+
 
 export const PhotoCommentsForm = ({ id }) => {
   const { postComment } = useContext(PhotosContext)
@@ -30,8 +32,8 @@ export const PhotoCommentsForm = ({ id }) => {
           placeholder="Comente..."
           {...register('comment')}
         ></textarea>
-        <button type='submit'>
-          <img src={Enviar} alt="" />
+        <button type="submit">
+          <SendDogSvg />
         </button>
       </form>
     </PhotoCommentsFormContainer>
