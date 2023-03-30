@@ -25,8 +25,8 @@ export const PhotosProvider = ({ children }) => {
     try {
       setLoading(true)
       const res = await requestGetPhoto(id)
-      console.log("🚀 ~ file: PhotosProvider.jsx:28 ~ getPhoto ~ res:", res)
-      await setDataPhotoModal(res.photo)
+  
+      setDataPhotoModal(res.photo)
       setDataCommentModal(res.comments)
     } catch (error) {
       console.log(error)
