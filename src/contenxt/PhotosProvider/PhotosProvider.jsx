@@ -6,8 +6,10 @@ import { LoginContext } from '../LoginProvider/LoginProvider'
 export const PhotosContext = createContext({})
 
 export const PhotosProvider = ({ children }) => {
-  const {  setLoading } = useContext(LoginContext)
+  const { setLoading } = useContext(LoginContext)
   const [dataPhotos, setDataPhotos] = useState([])
+  const [dataPhotoModal, setDataPhotoModal] = useState([])
+  const [dataCommentModal, setDataCommentModal] = useState([])
 
   async function getPhotos() {
     try {
@@ -19,22 +21,31 @@ export const PhotosProvider = ({ children }) => {
     }
   }
 
-  async function getPhoto({ id }) {
+  async function getPhoto(id) {
     try {
       setLoading(true)
-      const res = await requestGetPhoto({ id })
-      setDataPhotos(res)
-
+      const res = await requestGetPhoto(id)
+      console.log("🚀 ~ file: PhotosProvider.jsx:28 ~ getPhoto ~ res:", res)
+      await setDataPhotoModal(res.photo)
+      setDataCommentModal(res.comments)
     } catch (error) {
       console.log(error)
-
     } finally {
       setLoading(false)
     }
   }
 
   return (
-    <PhotosContext.Provider value={{ getPhoto, getPhotos, dataPhotos }}>
+    <PhotosContext.Provider
+      value={{
+        getPhoto,
+        getPhotos,
+        dataPhotos,
+        dataPhotoModal,
+        setDataPhotoModal,
+        setDataCommentModal,
+      }}
+    >
       {children}
     </PhotosContext.Provider>
   )

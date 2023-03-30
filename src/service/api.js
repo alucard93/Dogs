@@ -60,7 +60,11 @@ export async function requestGetPhotos({ page, total, user }) {
   )
   return response.data
 }
-export async function requestGetPhoto({ id }) {
+
+export async function requestGetPhoto(id) {
+  
+  
   const response = await api.get(`api/photo/${id}`)
+
   return response.data
 }

@@ -8,14 +8,14 @@ import { FeedModalContainer } from './style'
 
 export const FeedModal = ({ photo, setModalPhoto }) => {
   const { loading } = useContext(LoginContext)
-  const { getPhoto, dataPhotos } = useContext(PhotosContext)
-  
+  const { getPhoto, dataPhotoModal } = useContext(PhotosContext)
+
   useEffect(() => {
     getPhoto(photo.id)
   }, [photo])
 
   function handleOutsideClick(event) {
-    if(event.target == event.currentTarget) {
+    if (event.target == event.currentTarget) {
       setModalPhoto(null)
     }
   }
@@ -23,7 +23,7 @@ export const FeedModal = ({ photo, setModalPhoto }) => {
   return (
     <FeedModalContainer onClick={handleOutsideClick}>
       {loading && <Loading />}
-      {dataPhotos && <PhotoContent dataPhotos={dataPhotos} />}
+      {dataPhotoModal && <PhotoContent />}
     </FeedModalContainer>
   )
 }
