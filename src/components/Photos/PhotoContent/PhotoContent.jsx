@@ -8,9 +8,8 @@ import view from '../../../assets/visualizacao-black.svg'
 import { PhotosContext } from '../../../contenxt/PhotosProvider/PhotosProvider'
 
 export const PhotoContent = () => {
-  const { dataPhotoModal, setDataCommentModal } = useContext(PhotosContext)
+  const { dataPhotoModal } = useContext(PhotosContext)
   const { id, author, title, src, acessos, peso, idade } = dataPhotoModal
-  const { comments } = setDataCommentModal
 
   return (
     <PhotoContentContainer view={view}>
@@ -31,7 +30,7 @@ export const PhotoContent = () => {
             <li>{idade === '1' ? `${idade} ano` : `${idade} anos`}</li>
           </ul>
         </div>
-        <PhotoComments id={id} comments={comments} />
+        <PhotoComments id={id} />
       </div>
     </PhotoContentContainer>
   )
