@@ -2,6 +2,7 @@ import React, { createContext, useContext } from 'react'
 import { useState } from 'react'
 import {
   requestCommentPost,
+  requestDeleteComment,
   requestGetComments,
   requestGetPhoto,
   requestGetPhotos,
@@ -62,6 +63,14 @@ export const PhotosProvider = ({ children }) => {
     }
   }
 
+  async function deleteComment(id) {
+    try {
+      await requestDeleteComment(id)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <PhotosContext.Provider
       value={{
@@ -69,6 +78,7 @@ export const PhotosProvider = ({ children }) => {
         getComment,
         getPhotos,
         postComment,
+        deleteComment,
         dataPhotos,
         dataPhotoModal,
         dataCommentModal,
