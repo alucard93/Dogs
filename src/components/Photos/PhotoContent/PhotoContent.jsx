@@ -6,10 +6,17 @@ import { PhotoContentContainer } from './style'
 
 import view from '../../../assets/visualizacao-black.svg'
 import { PhotosContext } from '../../../contenxt/PhotosProvider/PhotosProvider'
+import { LoginContext } from '../../../contenxt/LoginProvider/LoginProvider'
+import { PhotoDelete } from '../PhotoDelete/PhotoDelete'
 
 export const PhotoContent = () => {
   const { dataPhotoModal } = useContext(PhotosContext)
+
+  const data = useContext(LoginContext)
+  console.log("🚀 ~ file: PhotoContent.jsx:15 ~ PhotoContent ~ data:", data)
   const { id, author, title, src, acessos, peso, idade } = dataPhotoModal
+  console.log("🚀 ~ file: PhotoContent.jsx:17 ~ PhotoContent ~ author:", author)
+  
 
   return (
     <PhotoContentContainer view={view}>
@@ -19,7 +26,8 @@ export const PhotoContent = () => {
       <div className="details">
         <div>
           <p className="author">
-            <Link to={`/perfil/${author}`}>@{author}</Link>
+            { data && data.username === author ? <PhotoDelete id={id} /> : <Link to={`/perfil/${author}`}>@{author}</Link>}
+            
             <span className="view">{acessos}</span>
           </p>
           <h1 className="title">
