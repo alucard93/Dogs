@@ -3,12 +3,20 @@ import { PhotosContext } from '../../../contenxt/PhotosProvider/PhotosProvider'
 import { PhotoDeleteContainer } from './style'
 
 export const PhotoDelete = ({ id }) => {
-  const { deleteComment } = useContext(PhotosContext)
+  const { deleteComment, loading } = useContext(PhotosContext)
 
   function handleClickdeleteComment() {
     deleteComment(id)
   }
   return (
-    <PhotoDeleteContainer onClick={handleClickdeleteComment}>PhotoDelete</PhotoDeleteContainer>
+    <>
+      {loading ? (
+        <PhotoDeleteContainer>PhotoDelete</PhotoDeleteContainer>
+      ) : (
+        <PhotoDeleteContainer onClick={handleClickdeleteComment} disabled>
+          PhotoDelete
+        </PhotoDeleteContainer>
+      )}
+    </>
   )
 }

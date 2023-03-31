@@ -1,21 +1,21 @@
-import React, { useContext } from 'react'
-import { LoginCreateContainer } from './style'
+import React, { useContext } from "react";
+import { LoginCreateContainer } from "./style";
 
-import { useForm } from 'react-hook-form'
+import { useForm } from "react-hook-form";
 
-import { yupResolver } from '@hookform/resolvers/yup'
+import { yupResolver } from "@hookform/resolvers/yup";
 
-import { validationLoginCreate } from '../../../validators/validatorsLoginCreate'
+import { validationLoginCreate } from "../../../validators/validatorsLoginCreate";
 
-import { RegisterContext } from '../../../contenxt/RegisterProvider/RegisterProvider'
+import { RegisterContext } from "../../../contenxt/RegisterProvider/RegisterProvider";
 
-import { Input } from '../../../components/Input/Input'
-import { Button } from '../../../components/Button/Button'
-import { LoginContext } from '../../../contenxt/LoginProvider/LoginProvider'
+import { Input } from "../../../components/Input/Input";
+import { Button } from "../../../components/Button/Button";
+import { LoginContext } from "../../../contenxt/LoginProvider/LoginProvider";
 
 export const LoginCreate = () => {
-  const { registerUser } = useContext(RegisterContext)
-  const { sessionUser } = useContext(LoginContext)
+  const { registerUser } = useContext(RegisterContext);
+  const { sessionUser } = useContext(LoginContext);
 
   const {
     register,
@@ -23,26 +23,26 @@ export const LoginCreate = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationLoginCreate),
-  })
+  });
 
   const handleSubmitRegister = async (data) => {
-    const { username, password, email } = data
+    const { username, password, email } = data;
 
     const newUser = {
       username,
       email,
       password,
-    }
+    };
 
-    await registerUser(newUser)
+    await registerUser(newUser);
 
     const newLogin = {
       username,
       password,
-    }
+    };
 
-    sessionUser(newLogin)
-  }
+    sessionUser(newLogin);
+  };
 
   return (
     <LoginCreateContainer className="animeLeft">
@@ -74,5 +74,5 @@ export const LoginCreate = () => {
         <Button type="submit">Cadastrar</Button>
       </form>
     </LoginCreateContainer>
-  )
-}
+  );
+};

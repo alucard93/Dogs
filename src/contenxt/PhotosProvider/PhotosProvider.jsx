@@ -56,6 +56,7 @@ export const PhotosProvider = ({ children }) => {
 
   async function postComment(id, data) {
     try {
+      setLoading(true)
       const res = await requestCommentPost(id, data)
       setDataCommentModal((prevComments) => [...prevComments, res])
     } catch (error) {
@@ -68,6 +69,8 @@ export const PhotosProvider = ({ children }) => {
       await requestDeleteComment(id)
     } catch (error) {
       console.log(error)
+    } finally {
+      setLoading(false)
     }
   }
 
