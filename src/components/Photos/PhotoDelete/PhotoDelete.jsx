@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { PhotosContext } from '../../../contenxt/PhotosProvider/PhotosProvider'
 import { PhotoDeleteContainer } from './style'
 
-export const PhotoDelete = () => {
+export const PhotoDelete = ({ id }) => {
+  const { deleteComment } = useContext(PhotosContext)
+
+  function handleClickdeleteComment() {
+    deleteComment(id)
+  }
   return (
-    <PhotoDeleteContainer>PhotoDelete</PhotoDeleteContainer>
+    <PhotoDeleteContainer onClick={handleClickdeleteComment}>PhotoDelete</PhotoDeleteContainer>
   )
 }

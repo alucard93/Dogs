@@ -1,3 +1,3 @@
 import styled from "styled-components";
 
-export const PhotoDeleteContainer = styled.div``
+export const PhotoDeleteContainer = styled.button``
