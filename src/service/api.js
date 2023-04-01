@@ -81,7 +81,7 @@ export async function requestGetComments(id) {
   return response.data
 }
 
-export async function requestDeleteComment(id) {
+export async function requestDeletePhoto(id) {
   const response = await api.delete(`api/photo/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,

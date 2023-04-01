@@ -2,7 +2,7 @@ import React, { createContext, useContext } from 'react'
 import { useState } from 'react'
 import {
   requestCommentPost,
-  requestDeleteComment,
+  requestDeletePhoto,
   requestGetComments,
   requestGetPhoto,
   requestGetPhotos,
@@ -64,9 +64,9 @@ export const PhotosProvider = ({ children }) => {
     }
   }
 
-  async function deleteComment(id) {
+  async function deletePhoto(id) {
     try {
-      await requestDeleteComment(id)
+      await requestDeletePhoto(id)
     } catch (error) {
       console.log(error)
     } finally {
@@ -81,7 +81,7 @@ export const PhotosProvider = ({ children }) => {
         getComment,
         getPhotos,
         postComment,
-        deleteComment,
+        deletePhoto,
         dataPhotos,
         dataPhotoModal,
         dataCommentModal,

@@ -11,7 +11,7 @@ export const User = () => {
     <Container>
       <UserHeader />
       <Routes>
-        <Route path="/feed" element={<Feed />}></Route>
+        <Route path="/" element={<Feed />}></Route>
         <Route path="/postar" element={<UserPhotoPost />}></Route>
         <Route path="/estatisticas" element={<UserStats />}></Route>
       </Routes>

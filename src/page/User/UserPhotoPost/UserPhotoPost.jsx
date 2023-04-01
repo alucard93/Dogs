@@ -14,8 +14,9 @@ export const UserPhotoPost = () => {
   const { loading } = useContext(LoginContext)
   const { registerPhoto } = useContext(RegisterContext)
   const [img, setImg] = useState({})
+  console.log("🚀 ~ file: UserPhotoPost.jsx:17 ~ UserPhotoPost ~ img:", img.raw)
 
-
+  
   const {
     register,
     handleSubmit,
